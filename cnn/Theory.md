@@ -12,15 +12,36 @@ likely to be only slightly worse_.
 
 In particular, unlike a regular Neural Network, the layers of a ConvNet have neurons arranged in 3 dimensions: width, height, depth.
 
+![CNN](./asset/images/cnn.jpeg)
+
+ConvNet is a sequence of layers, and every layer of a ConvNet transforms one volume of activations to another through a differentiable function. 
+We use four main types of layers to build ConvNet architectures: 
+- __Convolutional__ Layer: computes the output of neurons that are connected to local regions in the input, 
+  each computing a dot product between their weights and a small region they are connected to in the input volume.
+- __ReLU__ Layer: applies an elementwise activation function, such as the max(0,x) thresholding at zero. This leaves the size of the volume unchanged.
+- __Pooling__ Layer: performs a downsampling operation along the spatial dimensions (width, height).
+- __Fully-Connected__ Layer (exactly as seen in regular Neural Networks): the last layer computes the class scores, resulting in volume of size 1 × 1 × _C_, where _C_ is the numeber of classes.
+
+### Local Connectivity
+When dealing with high-dimensional inputs such as images, as we saw above it is impractical to connect neurons to all neurons in the previous volume. 
+Instead, we will connect each neuron to only a local region of the input volume. 
+The spatial extent of this connectivity is a hyperparameter called the __receptive field__ of the neuron (equivalently this is the __filter size__). 
+The extent of the connectivity along the depth axis is always equal to the depth of the input volume. 
+It is important to emphasize again this asymmetry in how we treat the spatial dimensions (width and height) and the depth dimension: 
+the connections are _local in 2D space_ (along width and height), but always _full along the depth_ of the input volume.
+Local Connectivity             |  Neuron Model
+:-------------------------:|:-------------------------:
+![depthcol](./asset/images/depthcol.jpeg)  |  ![neuron_model](./asset/images/neuron_model.jpeg)
+
 [Stanford cs231n Notes](https://cs231n.github.io/convolutional-networks/)
 
 ## AlexNet
 In 2012 AlexNet architecture was proposed by Krizhevsky. 
 - [View Paper](https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
 - [View Code](https://github.com/akrizhevsky/cuda-convnet2/tree/master)
-- 
+
 ### Architecture
-![image](./asset/images/AlexNet.png)
+![AlexNet](./asset/images/AlexNet.png)
 
 The net contains 8 layers with weights: the first 5 are convolutional and the remaining 3 are fullyconnected.
 - The first convolutional layer has 96 kernels of size 11×11×3 with a stride of 4 pixels. It takes as input the 224×224×3 image. <br>
