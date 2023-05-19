@@ -30,16 +30,26 @@ The extent of the connectivity along the depth axis is always equal to the depth
 It is important to emphasize again this asymmetry in how we treat the spatial dimensions (width and height) and the depth dimension: 
 the connections are _local in 2D space_ (along width and height), but always _full along the depth_ of the input volume.
 
-The dimension of the filter affects the dimension of the output volume in the following way:
+In the figure below, a 32x32x3 input volume in red and an example volume of neurons in the first Convolutional layer. Each neuron in the convolutional layer is connected only to a local region in the input volume spatially, but to the full depth (i.e. all color channels). Note, there are multiple neurons (5 in this example) along the depth, all looking at the same region in the input: the lines that connect this column of 5 neurons do not represent the weights (i.e. these 5 neurons do not share the same weights, but they are associated with 5 different filters), they just indicate that these neurons are connected to or looking at the same receptive field or region of the input volume, i.e. they share the same receptive field but not the same weights.
+
+![depthcol](./asset/images/depthcol.jpeg)
+
+However, the neurons from the classic Neural Network remain unchanged. They still compute a dot product of their weights with the input followed by a non-linearity, but their connectivity is now restricted to be local spatially.
+![neuron_model](./asset/images/neuron_model.jpeg)
+
+### 2D Convolution
+The dimension of the filter $`f`$ affects the dimension of the output volume in the following way:
 |  Input Volume   |     Weights     | Output Volume |
 | --------------- | --------------- | ----------------------------------------------------------------------------------------- |
 | $$n × n × n_c$$ | $$f × f × n_c$$ | $$\left( {n + 2p -f \over s} + 1 \right) × \left( {n + 2p -f \over s} + 1 \right) × n_c'$$ |
 
-(with $`n_c'`$ as the number of filters, which are detecting different features)
+with $`n_c'`$ as the number of filters, which are detecting different features.<br>
+In the above expression there are two other variables, affecting the dimension of the output volume:
+- $`s`$ (_stride_): how many pixels the filter shifts over the original image
+- $`p`$ (_padding_): When moving the filter this way we see that the pixels on the edges are “touched” less by the filter than the pixels within the image. That means we are throwing away some information related to those positions. Furthermore, the output image is shrinking on every convolution, which could be intentional, but if the input image is small, we quickly shrink it too fast. A solution to those setbacks is the use of “padding”. Before we apply a convolution, we pad the image with zeros all around its border to allow the filter to slide on top and maintain the output size equal to the input. Padding will result in a “__same__” convolution.
 
-Local Connectivity             |  Neuron Model
-:-------------------------:|:-------------------------:
-![depthcol](./asset/images/depthcol.jpeg)  |  ![neuron_model](./asset/images/neuron_model.jpeg)
+The following figure shows an example of 2D convolution:
+![2D Convolution](./asset/images/2D-Convolution.PNG)
 
 [Stanford cs231n Notes](https://cs231n.github.io/convolutional-networks/)
 
