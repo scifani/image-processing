@@ -1,3 +1,4 @@
+# Convolutional Neural Networks (CNNs)
 ## Introduction
 ConvNet architectures make the explicit assumption that the inputs are images, which allows us to encode certain properties into the architecture. 
 These then make the forward function more efficient to implement and vastly reduce the amount of parameters in the network.
@@ -68,15 +69,12 @@ The Pooling Layer operates independently on every depth slice of the input and r
 Many people dislike the pooling operation and think that we can get away without it. For example, [Striving for Simplicity: The All Convolutional Net](https://arxiv.org/abs/1412.6806) proposes to discard the pooling layer in favor of architecture that only consists of repeated CONV layers.<br>
 To reduce the size of the representation they suggest using larger stride in CONV layer once in a while. Discarding pooling layers has also been found to be important in training good generative models, such as variational autoencoders (VAEs) or generative adversarial networks (GANs). It seems likely that future architectures will feature very few to no pooling layers.
 
-### References:
-[Stanford cs231n Notes](https://cs231n.github.io/convolutional-networks/)
+### References
+- [Stanford cs231n Notes](https://cs231n.github.io/convolutional-networks/)
 
-## AlexNet
+## AlexNet [2012]
 In 2012 AlexNet architecture was proposed by Krizhevsky. 
-- [View Paper](https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
-- [View Code](https://github.com/akrizhevsky/cuda-convnet2/tree/master)
 
-### Architecture
 ![AlexNet](./asset/images/AlexNet.png)
 
 The net contains 8 layers with weights: the first 5 are convolutional and the remaining 3 are fullyconnected.
@@ -137,3 +135,25 @@ However, Dropout roughly doubles the number of iterations required to converge.
 ### Training details
 We trained our models using stochastic gradient descent with a batch size of 128 examples, momentum of 0.9, and weight decay of 0.0005. 
 We found that this small amount of weight decay was important for the model to learn.
+
+### References
+- [AlexNet Paper](https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
+- [Understanding AlexNet](https://learnopencv.com/understanding-alexnet/?ref=blog.paperspace.com)
+- [Source Code](https://github.com/akrizhevsky/cuda-convnet2/tree/master)
+
+
+## GoogLeNet - Inception Architecture [2014]
+In 2014, Szegedy (Google) et al., proposed a deep convolutional neural network architecture codenamed Inception.<br>
+The main hallmark of this architecture is the improved utilization of the computing resources inside the network.<br>
+One particular incarnation used in our submission for ImageNet Large-Scale Visual Recognition Challenge 2014 (ILSVRC14) is called __GoogLeNet__.
+GoogLeNet actually uses 12× fewer parameters than AlexNet, while being significantly more accurate. 
+The biggest gains in object-detection have not come from the utilization of deep networks alone or bigger models, 
+but from the synergy of deep architectures and classical computer vision.
+
+ The idea is of having filters with multiple sizes that can operate on the same level. 
+ With this idea, the network actually becomes wider rather than deeper. Below is an image showing a Naive Inception Module.
+ 
+ 
+
+### References
+- [GoogLeNet Paper](https://arxiv.org/pdf/1409.4842.pdf)
