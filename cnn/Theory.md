@@ -62,6 +62,8 @@ It is common to periodically insert a Pooling layer in-between successive Conv l
 Its function is to progressively reduce the spatial size of the representation to reduce the amount of parameters and computation in the network, and hence to also control overfitting.<br>
 The Pooling Layer operates independently on every depth slice of the input and resizes it spatially, using the MAX operation. The most common form is a pooling layer with filters of size 2x2 applied with a stride of 2 downsamples every depth slice in the input by 2 along both width and height, discarding 75% of the activations.
 
+![Pooling](./asset/images/Pooling.png)
+
 ### References:
 [Stanford cs231n Notes](https://cs231n.github.io/convolutional-networks/)
 
