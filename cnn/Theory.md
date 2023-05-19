@@ -41,15 +41,25 @@ However, the neurons from the classic Neural Network remain unchanged. They stil
 The dimension of the filter $`f`$ affects the dimension of the output volume in the following way:
 |  Input Volume   |     Weights     | Output Volume |
 | --------------- | --------------- | ----------------------------------------------------------------------------------------- |
-| $$n × n × n_c$$ | $$f × f × n_c$$ | $$\left( {n + 2p -f \over s} + 1 \right) × \left( {n + 2p -f \over s} + 1 \right) × n_c'$$ |
+| $$n × n × n_c$$ | $$f × f × n_c$$ | $$\left( {n + 2p -f \over s} + 1 \right) × \left( {n + 2p -f \over s} + 1 \right) × 1$$ |
 
 with $`n_c'`$ as the number of filters, which are detecting different features.<br>
 In the above expression there are two other variables, affecting the dimension of the output volume:
 - $`s`$ (_stride_): how many pixels the filter shifts over the original image
 - $`p`$ (_padding_): When moving the filter this way we see that the pixels on the edges are “touched” less by the filter than the pixels within the image. That means we are throwing away some information related to those positions. Furthermore, the output image is shrinking on every convolution, which could be intentional, but if the input image is small, we quickly shrink it too fast. A solution to those setbacks is the use of “padding”. Before we apply a convolution, we pad the image with zeros all around its border to allow the filter to slide on top and maintain the output size equal to the input. Padding will result in a “__same__” convolution.
 
-The following figure shows an example of 2D convolution:
-![2D Convolution](./asset/images/2D-Convolution.PNG)
+Usually, the number of filters is greater to one, so given $`K`$ filters, the resulting output volume will be:
+
+$$\left( {n + 2p -f \over s} + 1 \right) × \left( {n + 2p -f \over s} + 1 \right) × K$$
+
+The following figure shows an example of 2D convolution. As shown, the dimension over the _channels_ shrink to 1:
+![2D Convolution](./asset/images/2D-Convolution.png)
+
+<div>
+  <iframe src="https://cs231n.github.io/assets/conv-demo/index.html" width="100%" height="700px;" style="border:none;" title="Convolution Demo"></iframe>
+</div>
+
+### Pooling Layer
 
 [Stanford cs231n Notes](https://cs231n.github.io/convolutional-networks/)
 
@@ -63,6 +73,7 @@ In 2012 AlexNet architecture was proposed by Krizhevsky.
 
 The net contains 8 layers with weights: the first 5 are convolutional and the remaining 3 are fullyconnected.
 - The first convolutional layer has 96 kernels of size 11×11×3 with a stride of 4 pixels. It takes as input the 224×224×3 image. <br>
+  _From [Stanford cs231n Notes](https://cs231n.github.io/convolutional-networks/): As a fun aside, if you read the actual paper it claims that the input images were 224x224, which is surely incorrect because (224 - 11)/4 + 1 is quite clearly not an integer. This has confused many people in the history of ConvNets and little is known about what happened. My own best guess is that Alex used zero-padding of 3 extra pixels that he does not mention in the paper._
 - The second convolutional layer has 256 kernels of size 5×5×48. It takes as input the (response-normalized and pooled) output of the first convolutional layer. 
   Pooling layers in CNNs summarize the outputs of neighboring groups of neurons in the same kernel map.
 - The third convolutional layer has 384 kernels of size 3×3×256 connected to the (normalized, pooled) outputs of the second convolutional layer.
