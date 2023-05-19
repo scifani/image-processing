@@ -55,9 +55,7 @@ $$\left( {n + 2p -f \over s} + 1 \right) × \left( {n + 2p -f \over s} + 1 \righ
 The following figure shows an example of 2D convolution. As shown, the dimension over the _channels_ shrink to 1:
 ![2D Convolution](./asset/images/2D-Convolution.png)
 
-<div>
-  <iframe src="https://cs231n.github.io/assets/conv-demo/index.html" width="100%" height="700px;" style="border:none;" title="Convolution Demo"></iframe>
-</div>
+![Convolution Demo]("https://cs231n.github.io/assets/conv-demo/index.html")
 
 ### Pooling Layer
 
