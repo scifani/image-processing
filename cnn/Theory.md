@@ -171,3 +171,40 @@ Below is a zoomed-out image of the full GoogleNet architecture.
 
 ### References
 - [GoogLeNet Paper](https://arxiv.org/pdf/1409.4842.pdf)
+
+
+## VGG16 [2014]
+VGG16 was proposed by Karen Simonyan & Andrew Zisserman from the University of Oxford. VGG stands for Visual Geometry Group.<br>
+VGG16 partecipated to the ImageNet Challenge in 2014 toghether with GoogLeNet, which performed slightly better.
+
+The input dimensions of the architecture are fixed to the image size, (244 × 244). In a pre-processing step the mean RGB value is subtracted from each pixel in an image.
+
+![VGG16-Architecture](./asset/images/VGG16.png)
+
+After the pre-processing is complete the images are passed to a stack of convolutional layers with small receptive-field filters of size (3×3). In a few configurations the filter size is set to (1 × 1), which can be identified as a linear transformation of the input channels (followed by non-linearity).
+
+The stride for the convolution operation is fixed to 1. Spatial pooling is carried out by five max-pooling layers, which follow several convolutional layers. The max-pooling is performed over a (2 × 2) pixel window, with stride size set to 2.
+
+The configuration for fully-connected layers is always the same; the first two layers have 4096 channels each, the third performs 1000-way ILSVRC classification (and thus contains 1000 channels, one for each class), and the final layer is the softmax layer. All the hidden layers for the VGG network are followed by the ReLu activation function.
+
+### Configuration and Training
+The VGG network has five configurations named A to E.<br>
+The depth of the configuration increases from left to right, with more layers added. Below is a table describing all the potential network architectures:
+
+![VGG16-Configurations](./asset/images/VGG-configs.png)
+
+Training an image on the VGG network uses techniques similar to Krizhevsky et al., mentioned previously (i.e. the training of AlexNet).<br>
+The batch size and the momentum are set to 256 and 0.9, respectively. 
+The dropout regularization was added for the first two fully-connected layers setting the dropout ratio to 0.5. 
+The learning rate of the network was initially set to 0.001 and then decreased by a factor of 10 when the validation set accuracy stopped improving.
+
+### Caveats
+There are two key drawbacks worth noting if you’re working with a VGG network. 
+- it takes a lot of time to train. 
+- the network architecture weights are quite large. Due to its depth and number of fully-connected nodes, the trained VGG16 model is over 500MB. 
+
+VGG16 is used in many deep learning image classification problems; however, smaller network architectures are often more desirable (such as SqueezeNet, GoogleNet, etc.)
+
+### References
+- [A guide to AlexNet, VGG16 and GoogLeNet](https://blog.paperspace.com/popular-deep-learning-architectures-alexnet-vgg-googlenet/)
+- [VGG Paper](https://arxiv.org/pdf/1409.1556.pdf)
