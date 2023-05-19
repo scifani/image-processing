@@ -29,6 +29,14 @@ The spatial extent of this connectivity is a hyperparameter called the __recepti
 The extent of the connectivity along the depth axis is always equal to the depth of the input volume. 
 It is important to emphasize again this asymmetry in how we treat the spatial dimensions (width and height) and the depth dimension: 
 the connections are _local in 2D space_ (along width and height), but always _full along the depth_ of the input volume.
+
+The dimension of the filter affects the dimension of the output volume in the following way:
+|  Input Volume   |     Weights     | Output Volume |
+| --------------- | --------------- | ----------------------------------------------------------------------------------------- |
+| $$n × n × n_c$$ | $$f × f × n_c$$ | $$\left( {n + 2p -f \over s} + 1 \right) × \left( {n + 2p -f \over s} + 1 \right) × n_c'$$ |
+
+(with $`n_c'`$ as the number of filters, which are detecting different features)
+
 Local Connectivity             |  Neuron Model
 :-------------------------:|:-------------------------:
 ![depthcol](./asset/images/depthcol.jpeg)  |  ![neuron_model](./asset/images/neuron_model.jpeg)
