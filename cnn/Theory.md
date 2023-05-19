@@ -61,11 +61,12 @@ The following figure shows an example of 2D convolution. As shown, the dimension
 It is common to periodically insert a Pooling layer in-between successive Conv layers in a ConvNet architecture.<br>
 Its function is to progressively reduce the spatial size of the representation to reduce the amount of parameters and computation in the network, and hence to also control overfitting.<br>
 The Pooling Layer operates independently on every depth slice of the input and resizes it spatially, using the MAX operation. The most common form is a pooling layer with filters of size 2x2 applied with a stride of 2 downsamples every depth slice in the input by 2 along both width and height, discarding 75% of the activations.
+
+![Pooling](./asset/images/Pooling.png)
+
 #### Getting rid of pooling
 Many people dislike the pooling operation and think that we can get away without it. For example, [Striving for Simplicity: The All Convolutional Net](https://arxiv.org/abs/1412.6806) proposes to discard the pooling layer in favor of architecture that only consists of repeated CONV layers.<br>
 To reduce the size of the representation they suggest using larger stride in CONV layer once in a while. Discarding pooling layers has also been found to be important in training good generative models, such as variational autoencoders (VAEs) or generative adversarial networks (GANs). It seems likely that future architectures will feature very few to no pooling layers.
-
-![Pooling](./asset/images/Pooling.png)
 
 ### References:
 [Stanford cs231n Notes](https://cs231n.github.io/convolutional-networks/)
