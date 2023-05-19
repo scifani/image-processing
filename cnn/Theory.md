@@ -151,9 +151,23 @@ The biggest gains in object-detection have not come from the utilization of deep
 but from the synergy of deep architectures and classical computer vision.
 
  The idea is of having filters with multiple sizes that can operate on the same level. 
- With this idea, the network actually becomes wider rather than deeper. Below is an image showing a Naive Inception Module.
+ With this idea, the network actually becomes wider rather than deeper.<br>
+ Below is an image showing a Naive Inception Module.
  
- 
+ ![Naive Inception Module](./asset/images/naive-inception-module.png)
+
+Since neural networks are time-consuming and expensive to train, the authors limit the number of input channels by adding 
+an extra (1 × 1) convolution before the (3 × 3) and (5 × 5) convolutions to reduce the dimensions of the network and perform faster computations.<br>
+Below is an image showing a Naive Inception Module with this addition.
+
+![Naive Inception Module Optimized](./asset/images/naive-inception-module-optimized.png)
+
+### GoogLeNet Architecture
+The GoogleNet Architecture is 22 layers deep, with 27 pooling layers included. There are 9 inception modules stacked linearly in total. 
+The ends of the inception modules are connected to the global average pooling layer. <br>
+Below is a zoomed-out image of the full GoogleNet architecture.
+
+![GoogLeNet Architecture](./asset/images/googlenet-architecture.png)
 
 ### References
 - [GoogLeNet Paper](https://arxiv.org/pdf/1409.4842.pdf)
