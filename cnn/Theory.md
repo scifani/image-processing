@@ -58,7 +58,11 @@ The following figure shows an example of 2D convolution. As shown, the dimension
 ![Convolution Demo](https://cs231n.github.io/assets/conv-demo/index.html)
 
 ### Pooling Layer
+It is common to periodically insert a Pooling layer in-between successive Conv layers in a ConvNet architecture.<br>
+Its function is to progressively reduce the spatial size of the representation to reduce the amount of parameters and computation in the network, and hence to also control overfitting.<br>
+The Pooling Layer operates independently on every depth slice of the input and resizes it spatially, using the MAX operation. The most common form is a pooling layer with filters of size 2x2 applied with a stride of 2 downsamples every depth slice in the input by 2 along both width and height, discarding 75% of the activations.
 
+### References:
 [Stanford cs231n Notes](https://cs231n.github.io/convolutional-networks/)
 
 ## AlexNet
