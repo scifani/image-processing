@@ -208,3 +208,19 @@ VGG16 is used in many deep learning image classification problems; however, smal
 ### References
 - [A guide to AlexNet, VGG16 and GoogLeNet](https://blog.paperspace.com/popular-deep-learning-architectures-alexnet-vgg-googlenet/)
 - [VGG Paper](https://arxiv.org/pdf/1409.1556.pdf)
+
+## Residual Networks (ResNet) [2015]
+A team at Microsoft presented a residual learning framework to ease the training of networks that are substantially deeper than those used previously. 
+
+When deeper networks are able to start converging, a _degradation problem_ has been exposed: with the network depth increasing, accuracy gets saturated (which might be unsurprising) and then degrades rapidly.
+Unexpectedly, such degradation is not caused by overfitting, and adding more layers to a suitably deep model leads to higher training error.<br>
+We address the degradation problem by introducing a deep residual learning framework. 
+Instead of hoping each few stacked layers directly fit a desired underlying mapping, we explicitly let these layers fit a residual mapping. 
+_We hypothesize that it is easier to optimize the residual mapping than to optimize the original, unreferenced mapping._
+
+
+
+
+### References
+- [ResNet Paper](https://arxiv.org/pdf/1512.03385.pdf)
+- [A Review of Popular Deep Learning Architectures: ResNet, InceptionV3, and SqueezeNet](https://blog.paperspace.com/popular-deep-learning-architectures-resnet-inceptionv3-squeezenet/)
