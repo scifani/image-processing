@@ -218,8 +218,10 @@ We address the degradation problem by introducing a deep residual learning frame
 Instead of hoping each few stacked layers directly fit a desired underlying mapping, we explicitly let these layers fit a residual mapping. 
 _We hypothesize that it is easier to optimize the residual mapping than to optimize the original, unreferenced mapping._
 
+![ResidualLearningBlock](./asset/images/ResidualLearningBlock.png)
 
-
+The residual mapping can be realized by feedforward neural networks with “shortcut connections”. Shortcut connections are those skipping one or more layers. 
+In our case, the shortcut connections simply perform identity mapping, and their outputs are added to the outputs of the stacked layers.
 
 ### References
 - [ResNet Paper](https://arxiv.org/pdf/1512.03385.pdf)
