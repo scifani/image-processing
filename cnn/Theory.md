@@ -223,6 +223,10 @@ _We hypothesize that it is easier to optimize the residual mapping than to optim
 The residual mapping can be realized by feedforward neural networks with “shortcut connections”. Shortcut connections are those skipping one or more layers. 
 In our case, the shortcut connections simply perform identity mapping, and their outputs are added to the outputs of the stacked layers.
 
+![ResNet50](./asset/images/resnet50.png)
+
+The above picture shows the ResNet50 architecture.
+
 ### References
 - [ResNet Paper](https://arxiv.org/pdf/1512.03385.pdf)
 - [A Review of Popular Deep Learning Architectures: ResNet, InceptionV3, and SqueezeNet](https://blog.paperspace.com/popular-deep-learning-architectures-resnet-inceptionv3-squeezenet/)
